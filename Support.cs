@@ -8,5 +8,10 @@ namespace Mission4
 {
     internal class Support
     {
+        public void Test()
+        {
+            Console.WriteLine("Testing");
+        }
+        
     }
 }
