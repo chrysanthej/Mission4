@@ -8,7 +8,10 @@ namespace Mission4
 {
     internal class Support
     {
-
+        public void ValidateInput(int input)
+        {
+            // Validates the input
+        }
         public void DrawBoard(char[] board)
         {
             // Console.Clear();
