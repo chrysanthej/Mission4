@@ -19,6 +19,9 @@ namespace Mission4
             Console.WriteLine($" {board[6]} | {board[7]} | {board[8]} ");
         }
         
+        public void CheckWinner(char[] board)
+        {
 
+        }
     }
 }
