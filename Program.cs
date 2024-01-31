@@ -6,7 +6,7 @@ Support s = new Support();
 
 char position = ' ';
 string input = "";
-bool win = false;
+bool winner = false;
 char[] board = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
 Console.WriteLine("Welcome to TicTacToe!");
@@ -29,5 +29,5 @@ do
 
     // Check for a win
 
-} while (!win);
+} while (!winner);
 
