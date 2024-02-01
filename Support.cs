@@ -8,9 +8,22 @@ namespace Mission4
 {
     internal class Support
     {
-        public void ValidateInput(int input)
+        public bool ValidateInput(int input)
         {
-            // Validates the input
+            bool result = true; // Default to a valid guess
+
+            if (input < 1 || input > 9)
+            {
+                Console.WriteLine("Sorry, you need to pick a number 1-9");
+                result = false;
+            }
+            else if (!int.TryParse(input.ToString(), out _))
+            {
+                Console.WriteLine("Sorry, the input needs to be a valid integer");
+                result = false;
+            }
+
+            return result;
         }
         public void DrawBoard(char[] board)
         {

@@ -19,14 +19,16 @@ do
     if(playerXTurn == true)
     {
         player = 'X';
+    
     }
     else if(playerXTurn == false)
     {
         player = 'O';
+
     }
 
     // Ask user where they would like to go
-    Console.WriteLine("X's turn - which place would you like to go? (select numbers 1-9)");
+    Console.WriteLine(player + "'s turn - which place would you like to go? (select numbers 1-9)");
     do
     {
         input = int.Parse(Console.ReadLine());
