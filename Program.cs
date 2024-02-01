@@ -4,11 +4,11 @@ using Mission4;
 
 Support s = new Support();
 
-char position = ' ';
-string input = "";
+int input = 11;
 bool win = false;
-char winner = ' ';
+char player = ' ';
 char[] board = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+bool playerXTurn = true;
 
 Console.WriteLine("Welcome to TicTacToe!");
 
@@ -16,22 +16,37 @@ s.DrawBoard(board);
 
 do
 {
-    // Ask user where they would like to go
-    Console.WriteLine("x's turn - which place would you like to go? (select numbers 1-9");
-    input = Console.ReadLine();
+    if(playerXTurn == true)
+    {
+        player = 'X';
+    }
+    else if(playerXTurn == false)
+    {
+        player = 'O';
+    }
 
-    // Validate the play
-    
+    // Ask user where they would like to go
+    Console.WriteLine("X's turn - which place would you like to go? (select numbers 1-9)");
+    do
+    {
+        input = int.Parse(Console.ReadLine());
+    }while(!s.ValidateInput(input)); // Validate the play
 
     // Update the array
-    board[position] = 'x';
+    board[(input - 1)] = player;
 
     // Pass the array back to PrintBoard
+    s.DrawBoard(board);
 
     // Check for a win
-    win = s.CheckWinner(board, out winner);
+    win = s.CheckWinner(board, out player);
+
+    if(win == false)
+    {
+        playerXTurn = !playerXTurn;
+    }
 
 } while (!win);
 
 // Declare the winner
-Console.WriteLine("The winner is " + winner);
+Console.WriteLine("The winner is " + player);
