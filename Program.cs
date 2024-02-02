@@ -10,13 +10,6 @@ bool playerXTurn = true;
 
 Console.WriteLine("Welcome to TicTacToe!");
 
-// ... (previous code)
-
-//int input = 0; // Initialize input to a value that won't trigger the error
-
-// ... (previous code)
-
-//int input;
 
 do
 {
