@@ -1,7 +1,7 @@
 ﻿using Mission4;
-
+// new instance
 Support s = new Support();
-
+// initiate variables
 int input = 11;
 bool win = false;
 char player = ' ';

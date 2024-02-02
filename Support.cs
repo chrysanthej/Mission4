@@ -8,15 +8,16 @@ namespace Mission4
 {
     internal class Support
     {
+        // Method to validate the user inputs
         public bool ValidateInput(int input, char[] board)
         {
-            if (input < 1 || input > 9)
+            if (input < 1 || input > 9) // number between 1 and 9
             {
                 Console.WriteLine("Sorry, you need to pick a number 1-9");
                 return false;
             }
 
-            if (board[input - 1] == 'O' || board[input - 1] == 'X')
+            if (board[input - 1] == 'O' || board[input - 1] == 'X') // check if that spot is already taken
             {
                 Console.WriteLine("Sorry, that position has already been chosen. Pick a different number.");
                 return false;
@@ -28,7 +29,7 @@ namespace Mission4
 
         public void DrawBoard(char[] board)
         {
-            // Console.Clear();
+            // Draw board;
             Console.WriteLine($" {board[0]} | {board[1]} | {board[2]} ");
             Console.WriteLine("-----------");
             Console.WriteLine($" {board[3]} | {board[4]} | {board[5]} ");
