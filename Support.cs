@@ -8,23 +8,24 @@ namespace Mission4
 {
     internal class Support
     {
-        public bool ValidateInput(int input)
+        public bool ValidateInput(int input, char[] board)
         {
-            bool result = true; // Default to a valid guess
-
             if (input < 1 || input > 9)
             {
                 Console.WriteLine("Sorry, you need to pick a number 1-9");
-                result = false;
-            }
-            else if (!int.TryParse(input.ToString(), out _))
-            {
-                Console.WriteLine("Sorry, the input needs to be a valid integer");
-                result = false;
+                return false;
             }
 
-            return result;
+            if (board[input - 1] == 'O' || board[input - 1] == 'X')
+            {
+                Console.WriteLine("Sorry, that position has already been chosen. Pick a different number.");
+                return false;
+            }
+
+            return true;
         }
+
+
         public void DrawBoard(char[] board)
         {
             // Console.Clear();
@@ -34,8 +35,8 @@ namespace Mission4
             Console.WriteLine("-----------");
             Console.WriteLine($" {board[6]} | {board[7]} | {board[8]} ");
         }
-        
-       
+
+
 
         public bool CheckWinner(char[] board, out char winner)
         {
@@ -72,10 +73,18 @@ namespace Mission4
                 return true;
             }
 
-            // No winner yet
+            // Check for a tie
+            if (board.All(position => position == 'X' || position == 'O'))
+            {
+                winner = 'T'; // No winner
+                return true; // Game is a tie
+            }
+
+            // No winner or tie yet
             winner = '\0';
             return false;
         }
+
     }
 }
 

@@ -1,6 +1,4 @@
-﻿// Description: TicTacToe game, taking user input to play the game
-// Authors: Kian Bangerter, Chrysanthe Belgique, Lorin Costley, Ryan Hafen
-using Mission4;
+﻿using Mission4;
 
 Support s = new Support();
 
@@ -12,43 +10,76 @@ bool playerXTurn = true;
 
 Console.WriteLine("Welcome to TicTacToe!");
 
-s.DrawBoard(board);
+// ... (previous code)
+
+//int input = 0; // Initialize input to a value that won't trigger the error
+
+// ... (previous code)
+
+// int input;
 
 do
 {
-    if(playerXTurn == true)
+    // Display the current state of the board
+    s.DrawBoard(board);
+
+    if (playerXTurn)
     {
         player = 'X';
-    
     }
-    else if(playerXTurn == false)
+    else
     {
         player = 'O';
-
     }
 
     // Ask user where they would like to go
     Console.WriteLine(player + "'s turn - which place would you like to go? (select numbers 1-9)");
-    do
+    string userInput;
+
+    // Get a valid input before entering the loop
+    while (true)
     {
-        input = int.Parse(Console.ReadLine());
-    }while(!s.ValidateInput(input)); // Validate the play
+        userInput = Console.ReadLine();
+
+        if (!int.TryParse(userInput, out input) || !s.ValidateInput(input, board))
+        {
+            Console.WriteLine("Invalid input. Please enter a valid number.");
+        }
+        else
+        {
+            break;
+        }
+    }
 
     // Update the array
     board[(input - 1)] = player;
 
-    // Pass the array back to PrintBoard
-    s.DrawBoard(board);
-
     // Check for a win
     win = s.CheckWinner(board, out player);
 
-    if(win == false)
+    if (!win)
     {
         playerXTurn = !playerXTurn;
     }
 
 } while (!win);
 
-// Declare the winner
-Console.WriteLine("The winner is " + player);
+// Display the final state of the board
+s.DrawBoard(board);
+
+// Declare the winner or tie
+if (player != '\0')
+{
+    if (player == 'T')
+    {
+        Console.WriteLine("The game is a tie!");
+    }
+    else
+    {
+        Console.WriteLine("The winner is " + player);
+    }
+}
+
+
+
+
